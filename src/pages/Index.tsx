@@ -1,12 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { HeroSection } from "@/components/home/HeroSection";
+import { ServicesSection } from "@/components/home/ServicesSection";
+import { AboutPreview } from "@/components/home/AboutPreview";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { CTASection } from "@/components/home/CTASection";
 
 const Index = () => {
+  const [lang, setLang] = useState<"pt" | "en">("pt");
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <Header lang={lang} onLanguageChange={setLang} />
+      
+      <main className="flex-1">
+        <HeroSection lang={lang} />
+        <ServicesSection lang={lang} />
+        <AboutPreview lang={lang} />
+        <TestimonialsSection lang={lang} />
+        <CTASection lang={lang} />
+      </main>
+
+      <Footer lang={lang} />
+      <WhatsAppButton />
     </div>
   );
 };
