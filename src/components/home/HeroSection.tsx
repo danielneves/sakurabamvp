@@ -13,7 +13,8 @@ const translations = {
     title: "Soluções Jurídicas",
     titleHighlight: "no Canadá",
     subtitle: "Família, divórcio, imóveis, empresas e mais. Advocacia especializada com quem entende sua jornada e fala sua língua.",
-    cta: "Agende sua Consulta Gratuita",
+    ctaPrimary: "Agende sua Consulta",
+    ctaSecondary: "Conheça Nossos Serviços",
     stats: [
       { value: "15+", label: "Anos de Experiência" },
       { value: "2.000+", label: "Famílias Atendidas" },
@@ -25,7 +26,8 @@ const translations = {
     title: "Legal Solutions That",
     titleHighlight: "Understand You",
     subtitle: "We serve clients from diverse cultural backgrounds with expertise in Canadian law. Family, real estate, business, and more — with cultural sensitivity you can trust.",
-    cta: "Book a Free Consultation",
+    ctaPrimary: "Schedule a Consultation",
+    ctaSecondary: "Explore Our Services",
     stats: [
       { value: "15+", label: "Years of Experience" },
       { value: "2,000+", label: "Families Served" },
@@ -70,12 +72,17 @@ export function HeroSection({ lang = "pt" }: HeroSectionProps) {
             {t.subtitle}
           </p>
 
-          {/* CTA */}
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             <Link to="/contato">
               <Button size="lg" variant="accent" className="w-full sm:w-auto group">
-                {t.cta}
+                {t.ctaPrimary}
                 <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to="/#servicos">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                {t.ctaSecondary}
               </Button>
             </Link>
           </div>
