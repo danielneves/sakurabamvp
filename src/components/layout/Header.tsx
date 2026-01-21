@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
+
 import { cn } from "@/lib/utils";
 import sakurabaLogo from "@/assets/sakuraba-logo.svg";
 
@@ -97,15 +97,30 @@ export function Header({ lang = "pt", onLanguageChange }: HeaderProps) {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3 md:gap-4">
-          {/* Language Switcher */}
-          <div className="flex items-center gap-2">
-            <span className="text-lg" role="img" aria-label="Brazil">🇧🇷</span>
-            <Switch
-              checked={lang === "en"}
-              onCheckedChange={(checked) => onLanguageChange?.(checked ? "en" : "pt")}
-              className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-primary"
-            />
-            <span className="text-lg" role="img" aria-label="Canada">🇨🇦</span>
+          {/* Language Switcher - Toggle Pill */}
+          <div className="flex items-center bg-muted rounded-full p-1">
+            <button
+              onClick={() => onLanguageChange?.("en")}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-full transition-all",
+                lang === "en"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => onLanguageChange?.("pt")}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-full transition-all",
+                lang === "pt"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              PT
+            </button>
           </div>
 
           {/* WhatsApp CTA Button - Desktop */}
