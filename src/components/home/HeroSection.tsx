@@ -12,7 +12,7 @@ const translations = {
     badge: "Escritório Brasileiro-Canadense",
     title: "A Ponte Jurídica Entre",
     titleHighlight: "Brasil e Canadá",
-    subtitle: "Advocacia especializada com quem entende sua jornada. Falamos sua língua — literalmente.",
+    subtitle: "Advocacia especializada com quem entende sua jornada. Falamos sua língua.",
     cta1: "Quero Imigrar para o Canadá",
     cta2: "Já Moro no Canadá",
     stats: [
@@ -25,7 +25,7 @@ const translations = {
     badge: "Brazilian-Canadian Law Firm",
     title: "The Legal Bridge Between",
     titleHighlight: "Brazil and Canada",
-    subtitle: "Specialized legal services from someone who understands your journey. We speak your language — literally.",
+    subtitle: "Specialized legal services from someone who understands your journey. We speak your language.",
     cta1: "I Want to Immigrate to Canada",
     cta2: "I Already Live in Canada",
     stats: [
