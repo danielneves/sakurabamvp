@@ -16,10 +16,10 @@ const translations = {
     learnMore: "Saiba Mais",
     services: [
       {
-        icon: Plane,
-        title: "Imigração",
-        description: "Vistos de trabalho, Express Entry, LMIA, reagrupamento familiar e muito mais.",
-        href: "/imigracao",
+        icon: Heart,
+        title: "Família & Divórcio",
+        description: "Separação, guarda de filhos, pensão e questões transnacionais Brasil-Canadá.",
+        href: "/familia",
         featured: true,
       },
       {
@@ -27,14 +27,14 @@ const translations = {
         title: "Imóveis & Transações",
         description: "Compra e venda de imóveis, closing costs e proteção do seu investimento.",
         href: "/familia",
-        featured: false,
+        featured: true,
       },
       {
-        icon: Heart,
-        title: "Família & Divórcio",
-        description: "Separação, guarda de filhos, pensão e questões transnacionais Brasil-Canadá.",
-        href: "/familia",
-        featured: false,
+        icon: Building2,
+        title: "Empresas & Corporativo",
+        description: "Abertura de empresas, compliance, contratos comerciais e M&A.",
+        href: "/empresas",
+        featured: true,
       },
       {
         icon: FileCheck,
@@ -51,11 +51,11 @@ const translations = {
         featured: false,
       },
       {
-        icon: Building2,
-        title: "Empresas & Corporativo",
-        description: "Abertura de empresas, compliance, contratos comerciais e M&A.",
-        href: "/empresas",
-        featured: true,
+        icon: Plane,
+        title: "Imigração",
+        description: "Vistos de trabalho, Express Entry, LMIA, reagrupamento familiar e muito mais.",
+        href: "/imigracao",
+        highlighted: true,
       },
     ],
   },
@@ -66,10 +66,10 @@ const translations = {
     learnMore: "Learn More",
     services: [
       {
-        icon: Plane,
-        title: "Immigration",
-        description: "Work permits, Express Entry, LMIA, family reunification and more.",
-        href: "/imigracao",
+        icon: Heart,
+        title: "Family & Divorce",
+        description: "Separation, child custody, support and cross-border matters.",
+        href: "/familia",
         featured: true,
       },
       {
@@ -77,14 +77,14 @@ const translations = {
         title: "Real Estate",
         description: "Buying and selling properties, closing costs and protecting your investment.",
         href: "/familia",
-        featured: false,
+        featured: true,
       },
       {
-        icon: Heart,
-        title: "Family & Divorce",
-        description: "Separation, child custody, support and cross-border Brazil-Canada matters.",
-        href: "/familia",
-        featured: false,
+        icon: Building2,
+        title: "Business & Corporate",
+        description: "Company incorporation, compliance, commercial contracts and M&A.",
+        href: "/empresas",
+        featured: true,
       },
       {
         icon: FileCheck,
@@ -101,11 +101,11 @@ const translations = {
         featured: false,
       },
       {
-        icon: Building2,
-        title: "Business & Corporate",
-        description: "Company incorporation, compliance, commercial contracts and M&A.",
-        href: "/empresas",
-        featured: true,
+        icon: Plane,
+        title: "Immigration",
+        description: "Work permits, Express Entry, LMIA, family reunification and more.",
+        href: "/imigracao",
+        highlighted: true,
       },
     ],
   },
@@ -132,40 +132,48 @@ export function ServicesSection({ lang = "pt" }: ServicesSectionProps) {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {t.services.map((service, index) => (
-            <Card
-              key={index}
-              className={cn(
-                "group transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
-                service.featured && "border-accent/50 bg-accent/5"
-              )}
-            >
-              <CardHeader>
-                <div
-                  className={cn(
-                    "h-12 w-12 rounded-lg flex items-center justify-center mb-4 transition-colors",
-                    service.featured
-                      ? "bg-accent text-accent-foreground"
-                      : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
-                  )}
-                >
-                  <service.icon className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link to={service.href}>
-                  <Button variant="link" className="p-0 h-auto group/btn">
-                    {t.learnMore}
-                    <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
+          {t.services.map((service, index) => {
+            const isHighlighted = 'highlighted' in service && service.highlighted;
+            const isFeatured = 'featured' in service && service.featured;
+            
+            return (
+              <Card
+                key={index}
+                className={cn(
+                  "group transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
+                  isHighlighted && "border-accent bg-accent/10 ring-1 ring-accent/30",
+                  isFeatured && !isHighlighted && "border-primary/30 bg-primary/5"
+                )}
+              >
+                <CardHeader>
+                  <div
+                    className={cn(
+                      "h-12 w-12 rounded-lg flex items-center justify-center mb-4 transition-colors",
+                      isHighlighted
+                        ? "bg-accent text-accent-foreground"
+                        : isFeatured
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
+                    )}
+                  >
+                    <service.icon className="h-6 w-6" />
+                  </div>
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {service.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Link to={service.href}>
+                    <Button variant="link" className="p-0 h-auto group/btn">
+                      {t.learnMore}
+                      <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
