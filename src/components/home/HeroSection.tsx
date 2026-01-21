@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, Users, Briefcase } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-office.jpg";
@@ -10,11 +10,10 @@ interface HeroSectionProps {
 const translations = {
   pt: {
     badge: "Escritório Brasileiro-Canadense",
-    title: "A Ponte Jurídica Entre",
-    titleHighlight: "Brasil e Canadá",
-    subtitle: "Advocacia especializada com quem entende sua jornada. Falamos sua língua.",
-    cta1: "Quero Imigrar para o Canadá",
-    cta2: "Já Moro no Canadá",
+    title: "Soluções Jurídicas",
+    titleHighlight: "no Canadá",
+    subtitle: "Família, divórcio, imóveis, empresas e mais. Advocacia especializada com quem entende sua jornada e fala sua língua.",
+    cta: "Agende sua Consulta Gratuita",
     stats: [
       { value: "15+", label: "Anos de Experiência" },
       { value: "2.000+", label: "Famílias Atendidas" },
@@ -22,12 +21,11 @@ const translations = {
     ],
   },
   en: {
-    badge: "Brazilian-Canadian Law Firm",
-    title: "The Legal Bridge Between",
-    titleHighlight: "Brazil and Canada",
-    subtitle: "Specialized legal services from someone who understands your journey. We speak your language.",
-    cta1: "I Want to Immigrate to Canada",
-    cta2: "I Already Live in Canada",
+    badge: "Multicultural Law Firm",
+    title: "Legal Solutions That",
+    titleHighlight: "Understand You",
+    subtitle: "We serve clients from diverse cultural backgrounds with expertise in Canadian law. Family, real estate, business, and more — with cultural sensitivity you can trust.",
+    cta: "Book a Free Consultation",
     stats: [
       { value: "15+", label: "Years of Experience" },
       { value: "2,000+", label: "Families Served" },
@@ -72,19 +70,11 @@ export function HeroSection({ lang = "pt" }: HeroSectionProps) {
             {t.subtitle}
           </p>
 
-          {/* CTAs - Two Entry Points */}
+          {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            <Link to="/imigracao">
+            <Link to="/contato">
               <Button size="lg" variant="accent" className="w-full sm:w-auto group">
-                <Users className="h-5 w-5 mr-2" />
-                {t.cta1}
-                <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link to="/familia">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 group">
-                <Briefcase className="h-5 w-5 mr-2" />
-                {t.cta2}
+                {t.cta}
                 <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
