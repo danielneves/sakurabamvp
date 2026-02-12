@@ -35,7 +35,7 @@ const FamilyPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header lang={lang} />
+      <Header lang={lang} onLanguageChange={() => {}} />
       
       <main className="flex-1">
         {/* Hero */}
