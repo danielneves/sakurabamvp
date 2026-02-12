@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { BilingualInput } from "@/components/admin/BilingualInput";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 import { ImageUploader } from "@/components/admin/ImageUploader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -65,7 +66,19 @@ export default function BlogEditor() {
           <CardContent className="pt-6 space-y-4">
             <BilingualInput label="Título" valuePt={editing.title_pt} valueEn={editing.title_en} onChangePt={(v) => setEditing({ ...editing, title_pt: v })} onChangeEn={(v) => setEditing({ ...editing, title_en: v })} />
             <BilingualInput label="Resumo" valuePt={editing.excerpt_pt} valueEn={editing.excerpt_en} onChangePt={(v) => setEditing({ ...editing, excerpt_pt: v })} onChangeEn={(v) => setEditing({ ...editing, excerpt_en: v })} multiline />
-            <BilingualInput label="Conteúdo" valuePt={editing.content_pt} valueEn={editing.content_en} onChangePt={(v) => setEditing({ ...editing, content_pt: v })} onChangeEn={(v) => setEditing({ ...editing, content_en: v })} multiline />
+            <div className="space-y-3">
+              <Label className="text-sm font-medium">Conteúdo</Label>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <span className="text-xs text-muted-foreground mb-1 block">🇧🇷 Português</span>
+                  <RichTextEditor content={editing.content_pt} onChange={(v) => setEditing({ ...editing, content_pt: v })} />
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground mb-1 block">🇨🇦 English</span>
+                  <RichTextEditor content={editing.content_en} onChange={(v) => setEditing({ ...editing, content_en: v })} />
+                </div>
+              </div>
+            </div>
             <BilingualInput label="Categoria" valuePt={editing.category_pt} valueEn={editing.category_en} onChangePt={(v) => setEditing({ ...editing, category_pt: v })} onChangeEn={(v) => setEditing({ ...editing, category_en: v })} />
             <div className="grid grid-cols-2 gap-4">
               <div><Label>Slug</Label><Input value={editing.slug} onChange={(e) => setEditing({ ...editing, slug: e.target.value })} /></div>

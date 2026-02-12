@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Megaphone, Settings, FileText, Users, MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Megaphone, Settings, FileText, Users, MessageSquare, PenSquare } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "@/hooks/use-toast";
 
 const sections = [
   { title: "Hero & Textos", description: "Edite títulos, subtítulos e CTAs", icon: Megaphone, href: "/admin/hero" },
@@ -11,9 +15,29 @@ const sections = [
 ];
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const handleNewPost = async () => {
+    const slug = `novo-artigo-${Date.now()}`;
+    const { error } = await supabase.from("blog_posts").insert({ slug });
+    if (error) {
+      toast({ title: "Erro", description: error.message, variant: "destructive" });
+      return;
+    }
+    queryClient.invalidateQueries({ queryKey: ["admin_blog_posts"] });
+    navigate("/admin/blog");
+  };
+
   return (
     <div>
-      <h1 className="text-2xl font-bold text-foreground mb-6">Painel Administrativo</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-foreground">Painel Administrativo</h1>
+        <Button onClick={handleNewPost}>
+          <PenSquare className="h-4 w-4 mr-2" />
+          Novo Post
+        </Button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sections.map((section) => (
           <Link key={section.href} to={section.href}>
