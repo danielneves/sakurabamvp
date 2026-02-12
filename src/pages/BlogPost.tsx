@@ -63,9 +63,12 @@ const BlogPost = () => {
                   {lang === "pt" ? post.excerpt_pt : post.excerpt_en}
                 </p>
                 {(lang === "pt" ? post.content_pt : post.content_en) && (
-                  <div className="mt-6 whitespace-pre-wrap">
-                    {lang === "pt" ? post.content_pt : post.content_en}
-                  </div>
+                  <div
+                    className="mt-6"
+                    dangerouslySetInnerHTML={{
+                      __html: (lang === "pt" ? post.content_pt : post.content_en),
+                    }}
+                  />
                 )}
               </div>
             </article>
