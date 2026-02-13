@@ -51,7 +51,7 @@ export default function TeamEditor() {
   if (editing) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="sticky top-0 z-10 bg-secondary/95 backdrop-blur pb-4 -mt-6 -mx-6 px-6 pt-6 border-b border-border mb-2 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-foreground">Editar Membro</h1>
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => setEditing(null)}>Cancelar</Button>
@@ -75,7 +75,7 @@ export default function TeamEditor() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="sticky top-0 z-10 bg-secondary/95 backdrop-blur pb-4 -mt-6 -mx-6 px-6 pt-6 border-b border-border mb-2 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-foreground">Equipe</h1>
         <Button onClick={addNew}><Plus className="h-4 w-4 mr-2" />Novo Membro</Button>
       </div>
