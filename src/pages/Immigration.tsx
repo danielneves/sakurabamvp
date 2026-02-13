@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Link } from "react-router-dom";
 
 const ImmigrationPage = () => {
-  const [lang] = useState<"pt" | "en">("pt");
+  const [lang, setLang] = useState<"pt" | "en">("pt");
 
   const services = [
     {
@@ -43,7 +43,7 @@ const ImmigrationPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header lang={lang} />
+      <Header lang={lang} onLanguageChange={setLang} />
       
       <main className="flex-1">
         {/* Hero */}
