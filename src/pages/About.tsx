@@ -4,10 +4,16 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { CheckCircle2, Linkedin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTeamMembers } from "@/hooks/useTeamMembers";
 import lawyerImage from "@/assets/lawyer-celso.jpg";
+import lawyerMariana from "@/assets/lawyer-mariana.jpg";
+import lawyerRobert from "@/assets/lawyer-robert.jpg";
+
+const defaultImages = [lawyerImage, lawyerMariana, lawyerRobert];
 
 const AboutPage = () => {
   const [lang, setLang] = useState<"pt" | "en">("pt");
+  const { data: teamFromDB } = useTeamMembers();
 
   const translations = {
     pt: {
@@ -62,28 +68,12 @@ const AboutPage = () => {
 
   const t = translations[lang];
 
-  const teamMembers = [
-    {
-      name: "Giovana Dall'Acqua",
-      role: lang === "pt" ? "Advogada Associada" : "Associate Lawyer",
-      specialty: lang === "pt" ? "Direito de Família" : "Family Law",
-    },
-    {
-      name: "Frederico do Valle",
-      role: lang === "pt" ? "Advogado Associado" : "Associate Lawyer",
-      specialty: lang === "pt" ? "Direito Empresarial" : "Business Law",
-    },
-    {
-      name: "Manuela Dias",
-      role: lang === "pt" ? "Advogada Associada" : "Associate Lawyer",
-      specialty: lang === "pt" ? "Imigração" : "Immigration",
-    },
-    {
-      name: "Fernanda Noleto",
-      role: lang === "pt" ? "Advogada Associada" : "Associate Lawyer",
-      specialty: lang === "pt" ? "Direito Civil" : "Civil Law",
-    },
-  ];
+  const teamMembers = (teamFromDB ?? []).map((m, idx) => ({
+    name: m.name,
+    role: lang === "pt" ? m.role_pt : m.role_en,
+    specialty: lang === "pt" ? m.specialty_pt : m.specialty_en,
+    image_url: m.image_url || defaultImages[idx % defaultImages.length],
+  }));
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -174,10 +164,14 @@ const AboutPage = () => {
               {teamMembers.map((member, idx) => (
                 <Card key={idx} className="text-center hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="w-24 h-24 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                      <span className="text-3xl font-serif text-primary">
-                        {member.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
-                      </span>
+                    <div className="w-24 h-24 mx-auto rounded-full overflow-hidden bg-primary/10 flex items-center justify-center mb-4">
+                      {member.image_url ? (
+                        <img src={member.image_url} alt={member.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-3xl font-serif text-primary">
+                          {member.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                        </span>
+                      )}
                     </div>
                     <CardTitle className="text-lg">{member.name}</CardTitle>
                     <CardDescription>{member.role}</CardDescription>
