@@ -31,7 +31,7 @@ export function CardsBlock({ title, subtitle, content, lang }: Props) {
         {subtitle && <p className="text-muted-foreground text-center text-lg mb-12 max-w-2xl mx-auto">{subtitle}</p>}
         <div className={`grid gap-6 max-w-5xl mx-auto ${cols === 1 ? "grid-cols-1 max-w-2xl" : "md:grid-cols-2 lg:grid-cols-" + Math.min(cards.length, 4)}`}>
           {cards.map((card, idx) => {
-            const IconComp = card.icon ? (LucideIcons as Record<string, LucideIcon>)[card.icon] : null;
+            const IconComp = card.icon ? (LucideIcons as unknown as Record<string, LucideIcon>)[card.icon] : null;
             return (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
