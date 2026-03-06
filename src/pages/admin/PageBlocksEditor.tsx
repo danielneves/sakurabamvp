@@ -91,11 +91,11 @@ export default function PageBlocksEditor() {
       for (let i = 0; i < editBlocks.length; i++) {
         const block = { ...editBlocks[i], block_order: i, page_slug: pageSlug };
         if (block.id) {
-          const { id, created_at, updated_at, ...rest } = block;
-          await supabase.from("page_blocks").update(rest).eq("id", id);
+        const { id: blockId, created_at, updated_at, ...rest } = block;
+          await supabase.from("page_blocks").update(rest as any).eq("id", blockId!);
         } else {
-          const { id, created_at, updated_at, ...rest } = block;
-          await supabase.from("page_blocks").insert(rest);
+          const { id: _id, created_at, updated_at, ...rest } = block;
+          await supabase.from("page_blocks").insert(rest as any);
         }
       }
 
@@ -445,9 +445,9 @@ function FeaturedImageEditor({ content, onUpdate }: { content: Record<string, an
       <div>
         <Label className="text-xs">Imagem</Label>
         <ImageUploader
-          value={content.image_url ?? ""}
-          onChange={v => onUpdate("image_url", v)}
-          bucket="images"
+          label="Imagem de destaque"
+          currentUrl={content.image_url ?? ""}
+          onUpload={v => onUpdate("image_url", v)}
           folder="pages"
         />
       </div>
