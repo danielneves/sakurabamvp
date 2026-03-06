@@ -3,13 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, FileText, Users, MessageSquare, Settings, LogOut, Megaphone } from "lucide-react";
+import { LayoutDashboard, FileText, Users, MessageSquare, Settings, LogOut, Megaphone, Blocks } from "lucide-react";
 import sakurabaLogo from "@/assets/sakuraba-logo.svg";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/hero", label: "Hero & Textos", icon: Megaphone },
   { href: "/admin/services", label: "Serviços", icon: Settings },
+  { href: "/admin/pages", label: "Páginas", icon: Blocks },
   { href: "/admin/blog", label: "Blog", icon: FileText },
   { href: "/admin/team", label: "Equipe", icon: Users },
   { href: "/admin/testimonials", label: "Depoimentos", icon: MessageSquare },
