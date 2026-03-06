@@ -8,6 +8,7 @@ import BlogEditor from "@/pages/admin/BlogEditor";
 import TeamEditor from "@/pages/admin/TeamEditor";
 import TestimonialsEditor from "@/pages/admin/TestimonialsEditor";
 import ServicesEditor from "@/pages/admin/ServicesEditor";
+import PageBlocksEditor from "@/pages/admin/PageBlocksEditor";
 
 export default function Admin() {
   const { user, loading, isAdmin, isEditor } = useAuth();
@@ -45,6 +46,7 @@ export default function Admin() {
         <Route path="team" element={<TeamEditor />} />
         <Route path="testimonials" element={<TestimonialsEditor />} />
         <Route path="services" element={<ServicesEditor />} />
+        <Route path="pages" element={<PageBlocksEditor />} />
       </Routes>
     </AdminLayout>
   );

@@ -68,6 +68,51 @@ export type Database = {
         }
         Relationships: []
       }
+      page_blocks: {
+        Row: {
+          block_order: number
+          block_type: string
+          content: Json
+          created_at: string
+          id: string
+          is_active: boolean
+          page_slug: string
+          subtitle_en: string
+          subtitle_pt: string
+          title_en: string
+          title_pt: string
+          updated_at: string
+        }
+        Insert: {
+          block_order?: number
+          block_type: string
+          content?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          page_slug: string
+          subtitle_en?: string
+          subtitle_pt?: string
+          title_en?: string
+          title_pt?: string
+          updated_at?: string
+        }
+        Update: {
+          block_order?: number
+          block_type?: string
+          content?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          page_slug?: string
+          subtitle_en?: string
+          subtitle_pt?: string
+          title_en?: string
+          title_pt?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       services: {
         Row: {
           description_en: string
