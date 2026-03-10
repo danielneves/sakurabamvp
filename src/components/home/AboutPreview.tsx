@@ -20,7 +20,7 @@ const fallback = {
 };
 
 export function AboutPreview({ lang = "pt" }: AboutPreviewProps) {
-  const { data: members } = useTeamMembers();
+  const { data: members } = useTeamMembers(true);
   const { data: content } = useSiteContent();
   const fb = fallback[lang];
   const c = (key: string, fb: string) => content?.[key]?.[lang] ?? fb;
