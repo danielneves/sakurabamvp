@@ -181,6 +181,8 @@ export type Database = {
       }
       team_members: {
         Row: {
+          bio_en: string
+          bio_pt: string
           display_order: number
           experience: string
           id: string
@@ -191,10 +193,13 @@ export type Database = {
           quote_pt: string
           role_en: string
           role_pt: string
+          show_on_home: boolean
           specialty_en: string
           specialty_pt: string
         }
         Insert: {
+          bio_en?: string
+          bio_pt?: string
           display_order?: number
           experience?: string
           id?: string
@@ -205,10 +210,13 @@ export type Database = {
           quote_pt?: string
           role_en?: string
           role_pt?: string
+          show_on_home?: boolean
           specialty_en?: string
           specialty_pt?: string
         }
         Update: {
+          bio_en?: string
+          bio_pt?: string
           display_order?: number
           experience?: string
           id?: string
@@ -219,6 +227,7 @@ export type Database = {
           quote_pt?: string
           role_en?: string
           role_pt?: string
+          show_on_home?: boolean
           specialty_en?: string
           specialty_pt?: string
         }
