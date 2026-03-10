@@ -393,10 +393,7 @@ function TextCtaEditor({ content, onUpdate }: { content: Record<string, any>; on
           <Input value={content.cta_text_en ?? ""} onChange={e => onUpdate("cta_text_en", e.target.value)} />
         </div>
       </div>
-      <div>
-        <Label className="text-xs">Link do botão</Label>
-        <Input value={content.cta_link ?? "/contato"} onChange={e => onUpdate("cta_link", e.target.value)} placeholder="/contato" />
-      </div>
+      <CtaLinkPicker value={content.cta_link ?? "/contato"} onChange={v => onUpdate("cta_link", v)} />
     </div>
   );
 }
