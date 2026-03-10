@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import { IconPicker } from "@/components/admin/IconPicker";
 import { ImageUploader } from "@/components/admin/ImageUploader";
+import { CtaLinkPicker } from "@/components/admin/CtaLinkPicker";
 import { Plus, Save, Trash2, ArrowUp, ArrowDown, LayoutGrid, List, Type, Image, FileText, Newspaper } from "lucide-react";
 
 const BLOCK_TYPES = [
@@ -392,10 +393,7 @@ function TextCtaEditor({ content, onUpdate }: { content: Record<string, any>; on
           <Input value={content.cta_text_en ?? ""} onChange={e => onUpdate("cta_text_en", e.target.value)} />
         </div>
       </div>
-      <div>
-        <Label className="text-xs">Link do botão</Label>
-        <Input value={content.cta_link ?? "/contato"} onChange={e => onUpdate("cta_link", e.target.value)} placeholder="/contato" />
-      </div>
+      <CtaLinkPicker value={content.cta_link ?? "/contato"} onChange={v => onUpdate("cta_link", v)} />
     </div>
   );
 }
