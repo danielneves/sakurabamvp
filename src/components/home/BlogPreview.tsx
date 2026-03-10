@@ -34,7 +34,15 @@ export function BlogPreview({ lang = "pt" }: BlogPreviewProps) {
   const fb = fallback[lang];
   const c = (key: string, fb: string) => content?.[key]?.[lang] ?? fb;
 
-  const displayPosts = posts?.slice(0, 3) ?? [];
+  // Prioritize: highlighted first, then featured, then rest
+  const sorted = [...(posts ?? [])].sort((a: any, b: any) => {
+    if (a.is_highlighted && !b.is_highlighted) return -1;
+    if (!a.is_highlighted && b.is_highlighted) return 1;
+    if (a.is_featured && !b.is_featured) return -1;
+    if (!a.is_featured && b.is_featured) return 1;
+    return 0;
+  });
+  const displayPosts = sorted.slice(0, 3);
 
   return (
     <section className="py-20 bg-secondary">

@@ -25,9 +25,14 @@ export type Database = {
           excerpt_pt: string
           id: string
           image_url: string | null
+          is_featured: boolean
+          is_highlighted: boolean
+          lang: string
           published: boolean
           read_time: number
+          service_id: string | null
           slug: string
+          theme: string
           title_en: string
           title_pt: string
           updated_at: string
@@ -42,9 +47,14 @@ export type Database = {
           excerpt_pt?: string
           id?: string
           image_url?: string | null
+          is_featured?: boolean
+          is_highlighted?: boolean
+          lang?: string
           published?: boolean
           read_time?: number
+          service_id?: string | null
           slug: string
+          theme?: string
           title_en?: string
           title_pt?: string
           updated_at?: string
@@ -59,14 +69,27 @@ export type Database = {
           excerpt_pt?: string
           id?: string
           image_url?: string | null
+          is_featured?: boolean
+          is_highlighted?: boolean
+          lang?: string
           published?: boolean
           read_time?: number
+          service_id?: string | null
           slug?: string
+          theme?: string
           title_en?: string
           title_pt?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       page_blocks: {
         Row: {
