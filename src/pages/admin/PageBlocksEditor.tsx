@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import { IconPicker } from "@/components/admin/IconPicker";
 import { ImageUploader } from "@/components/admin/ImageUploader";
+import { CtaLinkPicker } from "@/components/admin/CtaLinkPicker";
 import { Plus, Save, Trash2, ArrowUp, ArrowDown, LayoutGrid, List, Type, Image, FileText, Newspaper } from "lucide-react";
 
 const BLOCK_TYPES = [
